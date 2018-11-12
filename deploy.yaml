@@ -42,42 +42,42 @@ spec:
     spec:
       containers:
       - name: time
-        image: asia.gcr.io/thinh-221414/timer:1.0
+        image: asia.gcr.io/thinh-221414/time:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 10000
 ---
 ##################################################################################################
-# Timer services
+# Demo services
 ##################################################################################################
 apiVersion: v1
 kind: Service
 metadata:
-  name: service
+  name: demo
   labels:
-    app: service
+    app: demo
 spec:
   ports:
   - port: 8080
     name: http
   selector:
-    app: service
+    app: demo
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: service
+  name: demo
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: service
+        app: demo
         version: v1
     spec:
       containers:
-      - name: service
-        image: asia.gcr.io/thinh-221414/service:1.0
+      - name: demo
+        image: asia.gcr.io/thinh-221414/demo:1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
